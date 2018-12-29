@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     # Start TF
     gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
-    sess = tf.Session() #config=tf.ConfigProto(gpu_options=gpu_options))
+    sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 
     # initialize network
     net.init(sess)
@@ -57,7 +57,6 @@ if __name__ == '__main__':
     camera = cv2.VideoCapture(0)
     # Feed image list through network
     # for img_name in image_list:
-    # for i in range(20):
     while True:
 
         ret_cap, image_raw = camera.read()

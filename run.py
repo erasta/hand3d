@@ -82,10 +82,18 @@ if __name__ == '__main__':
         coord_hw = trafo_coords(coord_hw_crop, center_v, scale_v, 256)
 
         plt.cla()
-        plt.imshow(image_raw)
+        # fig = plt.imshow(image_raw, aspect='equal', shape=(240, 320))
+        fig = plt.imshow(np.zeros([240, 320,3]), aspect='equal', shape=(240, 320))
         plot_hand(coord_hw, plt)
+        plt.axis('off')
+        fig.axes.get_xaxis().set_visible(False)
+        fig.axes.get_yaxis().set_visible(False)
         plt.pause(0.001)
         plt.show(False)
+
+        name = datetime.datetime.now()
+        cv2.imwrite("out/imag_" + str(name) + ".jpg", image_raw[..., ::-1])
+        plt.savefig("out/skel_" + str(name) + ".jpg", bbox_inches='tight', pad_inches = 0)
 
         # visualize
         # fig = plt.figure(1)

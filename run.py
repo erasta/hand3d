@@ -17,6 +17,7 @@
 #
 from __future__ import print_function, unicode_literals
 
+import os
 import tensorflow as tf
 import numpy as np
 import scipy.misc
@@ -92,6 +93,8 @@ if __name__ == '__main__':
         plt.show(False)
 
         name = datetime.datetime.now()
+        if not os.path.exists("out"):
+            os.mkdir("out", 0o0755)
         cv2.imwrite("out/imag_" + str(name) + ".jpg", image_raw[..., ::-1])
         plt.savefig("out/skel_" + str(name) + ".jpg", bbox_inches='tight', pad_inches = 0)
 
